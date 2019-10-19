@@ -1,105 +1,115 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Simple Map</title>
-  <meta name="viewport" content="initial-scale=1.0">
-  <meta charset="utf-8">
-  <style>
-    h1{
-      margin: 0;
-    }
-    header{
-      height: 30%;
-      width: 100%;
-      background-color: lightblue;
-      color: white;
-      box-shadow: 5px 5px 5px grey;
-    }
-    #map {
-      height: 100%;
-      width: 100%;
-    }
-    .mapWrapper{
-      margin: 5% 5% 0 5%;
-      width: 90%;
-      height: 600px;
-      border-radius: 10px;
-      overflow: hidden;
-      background-color: red;
-    }
-    .controlsWrapper{
-      margin: 0 5% 5% 5%;
-      width: 90%;
-      border-radius: 10px;
-      height: 300px;
-      background-color: lightgrey;
-    }
-    span{
-      color: grey;
-      font-size: 22px;
-    }
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        h1 {
+            margin: 0;
+        }
 
-    html, body {
-      height: 255px;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
+        header {
+            height: 30%;
+            width: 100%;
+            background-color: lightblue;
+            color: white;
+            box-shadow: 5px 5px 5px grey;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        .mapWrapper {
+            margin: 5% 5% 0 5%;
+            width: 90%;
+            height: 600px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: red;
+        }
+
+        .controlsWrapper {
+            margin: 0 5% 5% 5%;
+            width: 90%;
+            border-radius: 10px;
+            height: 300px;
+            background-color: lightgrey;
+        }
+
+        span {
+            color: grey;
+            font-size: 22px;
+        }
+
+        html,
+        body {
+            height: 255px;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <center>
-      <h1>This is our App</h1>
-    </center>
-  </header>
-  <br />
-  <br />
-  <center><span>We predict inform people where trash is and where it came from so we can stop garbage heeps at the source.</span></center>
-  <div class="mapWrapper">
-    <div id="map"></div>
-  </div>
-  <div class="controlsWrapper">
+    <header>
+        <center>
+            <h1>This is our App</h1>
+        </center>
+    </header>
+    <br />
+    <br />
+    <center><span>We predict inform people where trash is and where it came from so we can stop garbage heeps at the
+            source.</span></center>
+    <div class="mapWrapper">
+        <div id="map"></div>
+    </div>
+    <div class="controlsWrapper">
 
-  </div>
-  <script>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIc9EQpr6CFRtpPS4HH-GTAa25YIZCTIg&libraries=visualization"></script>
+    </script>
 
-    var map;
-    /* EXAMPLE DATA: Data points defined as an array of LatLng objects */
-    var heatmapData = [
-    new google.maps.LatLng(37.782, -122.447),
-    new google.maps.LatLng(37.782, -122.445),
-    new google.maps.LatLng(37.782, -122.443),
-    new google.maps.LatLng(37.782, -122.441),
-    new google.maps.LatLng(37.782, -122.439),
-    new google.maps.LatLng(37.782, -122.437),
-    new google.maps.LatLng(37.782, -122.435),
-    new google.maps.LatLng(37.785, -122.447),
-    new google.maps.LatLng(37.785, -122.445),
-    new google.maps.LatLng(37.785, -122.443),
-    new google.maps.LatLng(37.785, -122.441),
-    new google.maps.LatLng(37.785, -122.439),
-    new google.maps.LatLng(37.785, -122.437),
-    new google.maps.LatLng(37.785, -122.435)
-    ];
+    <script>
 
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 37.785, lng: -122.435},
-        zoom: 8,
-        mapTypeId: 'satellite'
-      });
-    };
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-      data: heatmapData
-    });
-    heatmap.setMap(map);
+        (function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 37.785, lng: -122.435 },
+                zoom: 8,
+                mapTypeId: 'satellite'
+            });
+        })();
+        var map;
+        /* EXAMPLE DATA: Data points defined as an array of LatLng objects */
+        var heatmapData = [
+            new google.maps.LatLng(37.782, -122.447),
+            new google.maps.LatLng(37.782, -122.445),
+            new google.maps.LatLng(37.782, -122.443),
+            new google.maps.LatLng(37.782, -122.441),
+            new google.maps.LatLng(37.782, -122.439),
+            new google.maps.LatLng(37.782, -122.437),
+            new google.maps.LatLng(37.782, -122.435),
+            new google.maps.LatLng(37.785, -122.447),
+            new google.maps.LatLng(37.785, -122.445),
+            new google.maps.LatLng(37.785, -122.443),
+            new google.maps.LatLng(37.785, -122.441),
+            new google.maps.LatLng(37.785, -122.439),
+            new google.maps.LatLng(37.785, -122.437),
+            new google.maps.LatLng(37.785, -122.435)
+        ];
 
-  </script>
+        var heatmap = new google.maps.visualization.HeatmapLayer({
+            data: heatmapData
+        });
+        heatmap.setMap(map);
+
+    </script>
 
 
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIc9EQpr6CFRtpPS4HH-GTAa25YIZCTIg&callback=initMap"
-  async defer></script>
 </body>
+
 </html>
->>>>>>> 79072e046a827c00cece97875723df1bd02944b9
