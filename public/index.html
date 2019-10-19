@@ -5,37 +5,32 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-
-
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
-        <center>
-            <h1>APP NAME</h1>
-        </center>
+        <h1>APP NAME</h1>
     </header>
-    <br />
-    <br />
-    <center><span>We predict inform people where trash is and where it came from so we can stop garbage heeps at the
-            source.</span></center>
-    <div class="mapWrapper">
-        <div id="map"></div>
-    </div>
-    <div id="controlsWrapper">
-        <img src="">
-    </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIc9EQpr6CFRtpPS4HH-GTAa25YIZCTIg&libraries=visualization"></script>
+    <main>
+        <p id="intro">We predict inform people where trash is and where it came from so we can stop garbage heeps at the
+            source.</p>
+        <div class="mapWrapper">
+            <div id="map"></div>
+        </div>
+        <div id="controlsWrapper">
+            <img src="">
+        </div>
+    </main>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIc9EQpr6CFRtpPS4HH-GTAa25YIZCTIg&libraries=visualization"></script>
     </script>
 
     <script>
         const img = document.querySelector("img");
-        img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png";
-
-
-        const getImage = document.getElementById('')
 
 
         (function initMap() {
@@ -46,12 +41,18 @@
             });
         })();
         var map;
-        //create Example Marker
-        var uluru = {lat: -25.344, lng: 131.036};
-        var marker = new google.maps.Marker({position: uluru, map: map});
-        /* EXAMPLE DATA: Data points defined as an array of LatLng objects */
+        let markers = [
+            {
+                marker: new google.maps.Marker({ position: { lat: -25.344, lng: 131.036 }, map: map }),
+                imgSrc: "https://wonderfulengineering.com/wp-content/uploads/2015/07/Australia-Flag-2.jpg"
+            },
+            {
+                marker: new google.maps.Marker({ position: { lat: -20, lng: -50 }, map: map, title: "" }),
+                imgSrc: "https://kids.nationalgeographic.com/content/dam/kids/photos/Countries/A-G/brazil-rio-city-scene-bay.adapt.945.1.jpg"
+            }
+        ]
         var heatmapData = [
-            {location: new google.maps.LatLng(37.782, -122.447), weight: 25},
+            { location: new google.maps.LatLng(37.782, -122.447), weight: 25 },
             new google.maps.LatLng(37.782, -144.445),
             new google.maps.LatLng(37.782, -122.443),
             new google.maps.LatLng(37.782, -122.441),
@@ -73,10 +74,18 @@
         heatmap.setMap(map);
 
         //on click change to image please
-        google.maps.event.addListener(marker, 'click', function() {
-
-
-        })
+        for (let marker of markers) {
+            google.maps.event.addListener(marker.marker, 'click', function (e) {
+                let i;
+                for (i = 0; i < markers.length; i++) {
+                    if (this == markers[i].marker) {
+                        console.log(i);
+                        img.src = markers[i].imgSrc
+                        break;
+                    }
+                }
+            })
+        }
     </script>
 
 
