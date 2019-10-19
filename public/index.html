@@ -20,10 +20,6 @@
         <div class="mapWrapper">
             <div id="map"></div>
         </div>
-        <div id="controlsWrapper">
-            <img src="">
-            <p></p>
-        </div>
     </main>
 
     <script
@@ -44,33 +40,23 @@
         var map;
         let markers = [
             {
-                marker: new google.maps.Marker({ position: { lat: -25.344, lng: 131.036 }, map: map }),
-                imgSrc: "https://wonderfulengineering.com/wp-content/uploads/2015/07/Australia-Flag-2.jpg"
+                marker: new google.maps.Marker({ position: { lat: 32, lng: -145 }, map: map }),
+                imgSrc: "",
+                content: `<a href="https://theoceancleanup.com/great-pacific-garbage-patch/" target="_blank"><h1>The Great Pacific Garbage Patch</h1></a>`
             },
             {
-                marker: new google.maps.Marker({ position: { lat: -20, lng: -50 }, map: map, title: "" }),
-                imgSrc: "https://kids.nationalgeographic.com/content/dam/kids/photos/Countries/A-G/brazil-rio-city-scene-bay.adapt.945.1.jpg"
+                marker: new google.maps.Marker({ position: { lat: -20, lng: -50 }, map: map}),
+                imgSrc: "https://kids.nationalgeographic.com/content/dam/kids/photos/Countries/A-G/brazil-rio-city-scene-bay.adapt.945.1.jpg",
+                content: ""
             }
         ]
         var heatmapData = [
-            { location: new google.maps.LatLng(37.782, -122.447), weight: 25 },
-            new google.maps.LatLng(37.782, -144.445),
-            new google.maps.LatLng(37.782, -122.443),
-            new google.maps.LatLng(37.782, -122.441),
-            new google.maps.LatLng(37.782, -122.439),
-            new google.maps.LatLng(37.782, -122.437),
-            new google.maps.LatLng(37.782, -122.435),
-            new google.maps.LatLng(37.785, -122.447),
-            new google.maps.LatLng(37.785, -122.445),
-            new google.maps.LatLng(37.785, -122.443),
-            new google.maps.LatLng(37.785, -122.441),
-            new google.maps.LatLng(37.785, -122.439),
-            new google.maps.LatLng(37.785, -122.437),
-            new google.maps.LatLng(37.785, -122.435)
+            { location: new google.maps.LatLng(37.782, -122.447), weight: 5 },
         ];
 
         var heatmap = new google.maps.visualization.HeatmapLayer({
-            data: heatmapData
+            data: heatmapData,
+            radius: 10
         });
         heatmap.setMap(map);
 
@@ -80,8 +66,10 @@
                 let i;
                 for (i = 0; i < markers.length; i++) {
                     if (this == markers[i].marker) {
-                        console.log(i);
-                        img.src = markers[i].imgSrc
+                        let infowindow = new google.maps.InfoWindow({
+                            content: markers[i].content
+                        });
+                        infowindow.open(map, markers[i].marker)
                         break;
                     }
                 }
