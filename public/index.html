@@ -5,59 +5,16 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <style>
-        h1 {
-            margin: 0;
-        }
 
-        header {
-            height: 30%;
-            width: 100%;
-            background-color: lightblue;
-            color: white;
-            box-shadow: 5px 5px 5px grey;
-        }
 
-        #map {
-            height: 100%;
-            width: 100%;
-        }
-
-        .mapWrapper {
-            margin: 5% 5% 0 5%;
-            width: 90%;
-            height: 600px;
-            border-radius: 10px;
-            overflow: hidden;
-            background-color: #ddd;
-        }
-
-        .controlsWrapper {
-            margin: 0 5% 5% 5%;
-            width: 90%;
-            border-radius: 10px;
-            height: 300px;
-            background-color: lightgrey;
-        }
-
-        span {
-            color: grey;
-            font-size: 22px;
-        }
-
-        html,
-        body {
-            height: 255px;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
         <center>
-            <h1>This is our App</h1>
+            <h1>APP NAME</h1>
         </center>
     </header>
     <br />
@@ -67,13 +24,16 @@
     <div class="mapWrapper">
         <div id="map"></div>
     </div>
-    <div class="controlsWrapper">
-
+    <div id="controlsWrapper">
+        <img src="">
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIc9EQpr6CFRtpPS4HH-GTAa25YIZCTIg&libraries=visualization"></script>
     </script>
 
     <script>
+        const img = document.querySelector("img");
+        img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png";
+
 
         const getImage = document.getElementById('')
 
@@ -91,8 +51,8 @@
         var marker = new google.maps.Marker({position: uluru, map: map});
         /* EXAMPLE DATA: Data points defined as an array of LatLng objects */
         var heatmapData = [
-            new google.maps.LatLng(37.782, -122.447),
-            new google.maps.LatLng(37.782, -122.445),
+            {location: new google.maps.LatLng(37.782, -122.447), weight: 25},
+            new google.maps.LatLng(37.782, -144.445),
             new google.maps.LatLng(37.782, -122.443),
             new google.maps.LatLng(37.782, -122.441),
             new google.maps.LatLng(37.782, -122.439),
