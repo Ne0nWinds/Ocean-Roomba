@@ -25,15 +25,15 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIc9EQpr6CFRtpPS4HH-GTAa25YIZCTIg&libraries=visualization"></script>
     </script>
+    <script src="/data.js"></script>
 
     <script>
         const img = document.querySelector("img");
 
-
         (function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 37.785, lng: -122.435 },
-                zoom: 8,
+                center: { lat: 47.55, lng: -126.36 },
+                zoom: 6,
                 mapTypeId: 'satellite'
             });
         })();
@@ -43,14 +43,22 @@
                 marker: new google.maps.Marker({ position: { lat: 32, lng: -145 }, map: map }),
                 content: `<a href="https://theoceancleanup.com/great-pacific-garbage-patch/" target="_blank"><h1>The Great Pacific Garbage Patch</h1></a>`
             },
-            {
-                marker: new google.maps.Marker({ position: { lat: -20, lng: -50 }, map: map}),
-                content: ""
-            }
         ]
-        var heatmapData = [
-            { location: new google.maps.LatLng(37.782, -122.447), weight: 5 },
-        ];
+        var heatmapData = new Array();
+        const { datapoints } = mapData;
+        let i;
+        for (i = 0; i < datapoints.length; i++) {
+            let { latitude, longitude, weight } = datapoints[i];
+            weight = Math.round(weight * 1000) / 1000;
+            if (weight > 0) {
+                heatmapData.push({
+                    location: new google.maps.LatLng(datapoints[i].latitude, datapoints[i].longitude),
+                    weight: datapoints[i].weight
+                })
+            } else {
+                console.log(weight);
+            }
+        }
 
         var heatmap = new google.maps.visualization.HeatmapLayer({
             data: heatmapData,
