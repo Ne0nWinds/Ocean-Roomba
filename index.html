@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <h1>APP NAME</h1>
+        <h1>Ocean Trash Tracking</h1>
     </header>
     <main>
         <div class="mapWrapper">
@@ -58,7 +58,9 @@
 
         var heatmap = new google.maps.visualization.HeatmapLayer({
             data: heatmapData,
-            radius: 10
+            radius: 7.5,
+            gradient: ["rgba(0,0,75,0.1)", "rgba(150,150,0,0.6)", "rgba(150,50,0,0.8)", "rgba(160,0,0,0.95)"],
+            opacity: 1
         });
         heatmap.setMap(map);
 

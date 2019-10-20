@@ -2,7 +2,7 @@ body {
     font-family: 'Source Sans Pro', 'Helvetica', 'Arial';
     box-sizing: border-box;
     display: grid;
-    grid-template-rows: 75px 1fr;
+    grid-template-rows: 60px 1fr;
     min-height: 100vh;
     background-color: #111;;
 }
